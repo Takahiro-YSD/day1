@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Vueのテスト</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <header v-if = 'show' id = 'app'>
+            <div>
+                <a :href="url">
+                    <img :src="img_url" :alt="img_alt" width="100" height="100"></img>
+                </a>
+            </div>
+        </header>
+
+        <section id = 'blog'>
+                <div class="album py-5 bg-light">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div v-for = 'item in items' class="col-md-6">
+                                <div class="card mb-4 shadow-sm">
+                                    <a :href="item.url"><img class="card-img-top" :src="item.img" alt="Card image cap" height="500"></img></a>
+                                        <div class="card-body">
+                                            <div v-bind:style="{fontSize: fontSize + 'px' }">
+                                                <p class="card-text">
+                                                    <center>
+                                                        <span v-html = 'item.name'>
+                                                            {{item.name}}
+                                                        </span>
+                                                    </center>
+                                                </p>
+                                            </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="btn-group">
+                                                        <a :href="item.url"><button class="btn btn-primary btn-lg btn-block" class="btn btn-secondary"　v-on:Click = 'btnClick' type="button" class="btn btn-sm btn-outline-secondary">詳細を見る</button></a>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <select v-model="selected">
+                                <option v-for="option in options">
+                                  {{ option.text }}
+                                </option>
+                            </select>
+                            <span> 
+                                {{ selected }}
+                                <div v-if="selected === 'form'">
+                                    <a :href="url">
+                                        <img :src="img_url" :alt="img_alt" width="100" height="100"></img>
+                                    </a>
+                                </div>
+                                <div v-else-if="selected === 'table'">
+                                    <a :href="url">
+                                        <img :src="img_url" :alt="img_alt" width="100" height="100"></img>
+                                    </a>
+                                </div>
+                            </span>
+                            
+
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+<script>
+    const app = new Vue({
+        el: '.container-fluid',
+        data: {
+            message: 'Hello, kikagaku',
+            url : 'https://www.kikagaku.co.jp/',
+            img_url : 'https://www.kikagaku.co.jp/_nuxt/img/ead0d84.svg',
+            img_alt : 'キカガク',
+            show : true,
+            activeColor: 'red',
+            fontSize: 30,
+            selected: '興味のあるBootstrapの要素を選択してください',
+            options: [
+            { text: 'form' },
+            { text: 'table' },
+            ],
+            items: [
+                {
+                    name : 'Bootstrap 「form」要素を学びたい方は</br>下記をクリック',
+                    url : 'https://getbootstrap.com/docs/4.3/components/forms/',
+                    img : 'b.png',
+                },
+                {
+                    name : 'Bootstrap 「table」要素を学びたい方は</br>下記をクリック',
+                    url : 'https://getbootstrap.com/docs/4.4/content/tables/',
+                    img : 'a.png',
+                },
+            ]
+        },
+        methods: {
+            btnClick(){
+                console.log('Click')
+            }
+        }
+    }
+    )
+</script>
+</html>
