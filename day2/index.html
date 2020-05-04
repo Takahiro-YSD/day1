@@ -22,7 +22,7 @@
                     <div class="container-fluid">
                         <div class="row">
 
-                            <div v-for = 'item in items' class="col-md-6">
+                            <div v-for = 'item in items' class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
                                     <a :href="item.url"><img class="card-img-top" :src="item.img" alt="Card image cap" height="500"></img></a>
                                         <div class="card-body">
@@ -85,7 +85,7 @@
             img_alt : 'キカガク',
             show : true,
             activeColor: 'red',
-            fontSize: 30,
+            fontSize: 22,
             selected: '興味のあるBootstrapの要素を選択してください',
             options: [
             { text: 'form' },
@@ -101,6 +101,11 @@
                     name : 'Bootstrap 「table」要素を学びたい方は</br>下記をクリック',
                     url : 'https://getbootstrap.com/docs/4.4/content/tables/',
                     img : 'a.png',
+                },
+                {
+                    name : 'Bootstrap 主要な要素を試してみた</br>下記をクリック',
+                    url : 'Bootstrap.html',
+                    img : 'c.png',
                 },
             ]
         },
